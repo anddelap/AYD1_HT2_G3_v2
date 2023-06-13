@@ -63,11 +63,17 @@ func primo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, result)
 }
 
+func info(w http.ResponseWriter, r *http.Request) {
+	var informacion = "Diego Saul Camey Giron 201904025 \nLuis Andres de la Peña Pineda 201900450\nDaniel Rolando Sotz Alvarado 201430496\nAngel Oswaldo Arteaga Garcia 201901816"	
+	fmt.Fprintf(w, informacion)
+}
+
 func main() {
 	fmt.Println("Api corriendo en 'http://localhost:8000")
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/suma", suma).Methods("POST")
 	router.HandleFunc("/resta", resta).Methods("POST")
 	router.HandleFunc("/primo", primo).Methods("POST")
+	router.HandleFunc("/info", info).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
