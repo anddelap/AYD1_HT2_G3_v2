@@ -28,7 +28,7 @@ func suma(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var operacion Operacion
 	json.Unmarshal(reqBody, &operacion)
-	result := strconv.Itoa(operacion.Left + operacion.Right)
+	result := strconv.Itoa(operacion.Left * operacion.Right)
 	fmt.Fprintf(w, result)
 }
 
