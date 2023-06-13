@@ -28,6 +28,14 @@ func suma(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, result)
 }
 
+func resta(w http.ResponseWriter, r *http.Request) {
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var operacion Operacion
+	json.Unmarshal(reqBody, &operacion)
+	result := strconv.Itoa(operacion.Left - operacion.Right)
+	fmt.Fprintf(w, result)
+}
+
 func main() {
 	fmt.Println("Api corriendo en 'http://localhost:8000")
 	router := mux.NewRouter().StrictSlash(true)
